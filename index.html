@@ -3,24 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Junta Web</title>
+    <title>Junta.pe - Eventos Comunitarios</title>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1>Bienvenido a la Junta</h1>
-        <p>Este es un ejemplo inicial para tu sitio web.</p>
+        <div class="container header-content">
+            <h1>Junta.pe</h1>
+            </div>
     </header>
-    <main>
-        <section>
-            <h2>Sección de ejemplo</h2>
-            <p>Aquí puedes colocar tu contenido.</p>
+
+    <main class="container">
+        <section class="filters-search-section">
+            <div class="filter-categories">
+                <button class="filter-btn active" data-category="all">Todos los Eventos</button>
+                <button class="filter-btn" data-category="music">Música</button>
+                <button class="filter-btn" data-category="comedy">Comedia</button>
+                <button class="filter-btn" data-category="theater">Teatro</button>
+                <button class="filter-btn" data-category="art-exhibition">Arte y Exposición</button>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar eventos..." id="searchInput">
+                <button><i class="fas fa-search"></i></button>
+            </div>
         </section>
+
+        <section class="events-grid" id="eventsGrid">
+            <div class="event-card" data-event-id="1">
+                <img src="https://via.placeholder.com/300x200" alt="Festival de Jazz de Verano">
+                <div class="event-info">
+                    <span class="event-category">Música</span>
+                    <span class="event-date">14 jul 2025</span>
+                    <h3>Festival de Jazz de Verano</h3>
+                    <p class="event-organizer">Fondo de Educación Musical</p>
+                    <button class="btn btn-details">Ver Detalles</button>
+                </div>
+            </div>
+            </section>
     </main>
+
+</section>
+    </main>
+
+    <section class="about-section">
+        <div class="container">
+            <h2>Acerca de Junta.pe</h2>
+            <p>
+                Junta.pe es una plataforma dedicada a conectar personas a través de eventos comunitarios únicos. Creemos en el poder de reunirse, compartir experiencias y apoyar causas locales. Nuestra misión es ofrecer un espacio donde puedas descubrir, disfrutar y contribuir a eventos que enriquecen nuestra comunidad.
+            </p>
+        </div>
+    </section>
     <footer>
         <p>&copy; 2025 Tu Nombre Allison</p>
+        <div class="container">
+            <p>&copy; 2025 Junta.pe</p>
+        </div>
     </footer>
+
+    <div id="eventDetailsModal" class="modal">
+        <div class="modal-content event-details-content">
+            <span class="close-button">&times;</span>
+            <img src="" alt="Evento" class="modal-event-image">
+            <div class="modal-event-info">
+                <span class="modal-event-category-date"></span>
+                <h2 class="modal-event-title"></h2>
+                <p class="modal-event-time"></p>
+                <p class="modal-event-location"></p>
+                <p class="modal-event-organizer"></p>
+                
+                <div class="donation-section">
+                    <h3>Apoya Este Evento</h3>
+                    <p class="donation-description"></p>
+                    <div class="donation-options">
+                        <button class="donation-amount-btn" data-amount="10">S/. 10</button>
+                        <button class="donation-amount-btn" data-amount="25">S/. 25</button>
+                        <button class="donation-amount-btn" data-amount="50">S/. 50</button>
+                        <button class="donation-amount-btn" data-amount="100">S/. 100</button>
+                        <input type="number" id="otherAmount" placeholder="S/. Otro" min="1">
+                    </div>
+                    <div class="modal-actions">
+                        <button id="donateNowBtn" class="btn btn-primary">Donar Ahora</button>
+                        <button id="addToCalendarBtn" class="btn btn-secondary">Añadir al Calendario</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="thankYouModal" class="modal">
+        <div class="modal-content thank-you-content">
+            <div class="check-icon"><i class="fas fa-check-circle"></i></div>
+            <h2>¡Gracias por tu Donación!</h2>
+            <p class="thank-you-message"></p>
+            <button id="closeThankYouModalBtn" class="btn btn-primary">Cerrar</button>
+        </div>
+    </div>
+
     <script src="js/script.js"></script>
 </body>
 </html>

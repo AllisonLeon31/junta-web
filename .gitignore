@@ -1,0 +1,5 @@
+# Archivos de dependencias (se pueden reinstalar)
+node_modules/
+
+# Archivo de variables de entorno (contiene secretos)
+.env

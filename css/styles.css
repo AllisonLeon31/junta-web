@@ -2,21 +2,424 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    background-color: #f0f2f5; /* Un gris más claro para el fondo general */
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    /* Fondo con degradado de morado a magenta */
+    background: linear-gradient(to right, #6A4FF5, #BC52E0);
+    color: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    text-align: center; /* Asegura que el texto esté centrado */
+}
+
+header .header-content {
+    display: flex;
+    justify-content: center; /* Centrar el título */
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    color: white; /* Texto blanco para que contraste bien con el degradado */
+    font-size: 2.2em;
+}
+
+main {
+    padding: 20px 0;
+}
+
+/* --- Seccion de Filtros y Busqueda --- */
+.filters-search-section {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.filter-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.filter-btn {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #555;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background-color: #6a4ff5; /* Un tono de morado/azul para los activos */
+    color: white;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.search-bar input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.search-bar input[type="text"]:focus {
+    border-color: #6a4ff5;
+}
+
+.search-bar button {
+    background-color: #6a4ff5;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #543cc7;
+}
+
+/* --- Grid de Eventos --- */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.event-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.event-card img {
+    width: 100%;
+    height: 180px; /* Altura fija para las imágenes */
+    object-fit: cover;
+    display: block;
+}
+
+.event-info {
+    padding: 15px;
+}
+
+.event-category {
+
+      display: none;
+}
+
+.event-date {
+    font-size: 0.8em;
+    color: #666;
+}
+
+.event-info h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
     color: #333;
 }
-header {
-    background-color: #4CAF50;
+
+.event-organizer {
+    font-size: 0.9em;
+    color: #6a4ff5; /* Color del organizador similar a los botones */
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-details {
+    background-color: #6a4ff5;
     color: white;
-    padding: 20px;
+    width: 100%; /* El botón ocupa todo el ancho */
+    margin-top: 10px;
+}
+
+.btn-details:hover {
+    background-color: #543cc7;
+}
+
+/* --- Modales --- */
+.modal {
+    display: none; /* OCULTO POR DEFECTO */
+    position: fixed; /* Posición fija para cubrir toda la pantalla */
+    z-index: 1000; /* Alto z-index para estar por encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Habilitar scroll si el contenido es muy largo */
+    background-color: rgba(0,0,0,0.6); /* Fondo semi-transparente oscuro */
+    justify-content: center; /* Alineación para el contenido, se activa con .modal.show */
+    align-items: center;    /* Alineación para el contenido, se activa con .modal.show */
+    padding: 20px; /* Padding para evitar que el contenido toque los bordes */
+}
+
+/* Clase para mostrar el modal con flexbox */
+.modal.show {
+    display: flex; /* Mostramos el modal cuando tiene la clase 'show' */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0; /* Removido el padding para que la imagen ocupe todo el ancho */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    max-width: 700px; /* Ancho máximo para el modal */
+    width: 100%;
+    overflow: hidden; /* Asegura que la imagen no se salga del radio */
+    animation: fadeIn 0.3s ease-out; /* Animación de aparición */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+    background-color: rgba(255,255,255,0.7); /* Fondo semi-transparente para el botón X */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+.modal-event-image {
+    width: 100%;
+    height: 250px; /* Altura fija para la imagen del modal */
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.modal-event-info {
+    padding: 25px;
+}
+
+.modal-event-category-date {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.modal-event-title {
+    font-size: 1.8em;
+    margin: 10px 0;
+    color: #333;
+}
+
+.modal-event-time,
+.modal-event-location,
+.modal-event-organizer {
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.modal-event-organizer {
+    font-weight: 600;
+    color: #6a4ff5;
+    margin-bottom: 20px;
+}
+
+.donation-section h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.donation-description {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.donation-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.donation-amount-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 600;
+    color: #555;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.donation-amount-btn.selected,
+.donation-amount-btn:hover {
+    background-color: #e6f7ff; /* Fondo más claro para seleccionado/hover */
+    border-color: #1890ff; /* Borde azul para seleccionado/hover */
+    color: #1890ff;
+}
+
+#otherAmount {
+    flex-grow: 1; /* Permite que ocupe el espacio restante */
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95em;
+    outline: none;
+    max-width: 120px; /* Ancho máximo para el campo "Otro" */
+}
+
+#otherAmount:focus {
+    border-color: #6a4ff5;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-start; /* Alinea los botones al inicio */
+    margin-top: 20px;
+}
+
+.btn-primary {
+    background-color: #6a4ff5; /* Morado/azul primario */
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+}
+
+.btn-primary:hover {
+    background-color: #543cc7;
+}
+
+.btn-secondary {
+    background-color: #e0e0e0; /* Gris claro para el secundario */
+    color: #555;
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+}
+
+.btn-secondary:hover {
+    background-color: #d0d0d0;
+    border-color: #bbb;
+}
+
+/* --- Modal de Agradecimiento --- */
+.thank-you-content {
+    text-align: center;
+    padding: 40px;
+}
+
+.check-icon {
+    font-size: 4em;
+    color: #52c41a; /* Verde para el check */
+    margin-bottom: 20px;
+}
+
+.thank-you-content h2 {
+    color: #333;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.thank-you-message {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 30px;
+}
+/* --- Seccion Acerca de --- */
+.about-section {
+    background-color: #ffffff;
+    padding: 40px 0;
+    margin-top: 40px;
     text-align: center;
 }
-main {
-    padding: 20px;
+
+.about-section h2 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 15px;
 }
+
+.about-section p {
+    font-size: 1.1em;
+    color: #555;
+    max-width: 800px; /* Evita que el texto sea demasiado ancho en pantallas grandes */
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* Footer */
 footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 20px 0;
+    margin-top: 40px;
 }
